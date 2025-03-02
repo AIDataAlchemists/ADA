@@ -18,7 +18,7 @@ AI-powered collaborative data analysis system using specialized AI agents to per
 ## Getting Started (Future Implementation)
 To begin using the ADA system, clone the repository and configure your environment:
 ```bash
-git clone https://github.com/your-username/ai-data-analyst.git
+git clone https://github.com/ris3abh/ai-data-analyst.git
 cd ai-data-analyst
 pip install -r requirements.txt  # Future requirement file
 ```
