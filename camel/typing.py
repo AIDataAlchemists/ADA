@@ -1,16 +1,3 @@
-# =========== Copyright 2023 @ CAMEL-AI.org. All Rights Reserved. ===========
-# Licensed under the Apache License, Version 2.0 (the “License”);
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an “AS IS” BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# =========== Copyright 2023 @ CAMEL-AI.org. All Rights Reserved. ===========
 from enum import Enum
 
 
@@ -22,6 +9,7 @@ class TaskType(Enum):
     EVALUATION = "evaluation"
     SOLUTION_EXTRACTION = "solution_extraction"
     CHATDEV = "chat_dev"
+    DATADEV = "data_dev"  
     DEFAULT = "default"
 
 
@@ -41,6 +29,23 @@ class RoleType(Enum):
     CHATDEV_REVIEWER = "code reviewer"
     CHATDEV_TESTER = "software test engineer"
     CHATDEV_CCO = "chief creative officer (CCO)"
+    
+    # Data Analytics specific roles
+    DATADEV = "DataTech"
+    DATADEV_COUNSELOR = "counselor" 
+    DATADEV_CEO = "chief executive officer (CEO)"
+    DATADEV_CHRO = "chief human resource officer (CHRO)"
+    DATADEV_CPO = "chief product officer (CPO)"
+    DATADEV_CTO = "chief technology officer (CTO)"
+    DATADEV_DATA_ANALYST = "data analyst"
+    DATADEV_DATA_ENGINEER = "data engineer"
+    DATADEV_ML_ENGINEER = "ml engineer"
+    DATADEV_DATA_SCIENTIST = "data scientist"
+    DATADEV_STATISTICIAN = "statistician"
+    DATADEV_MODEL_INTERPRETER = "model interpreter"
+    DATADEV_REPORT_WRITER = "report writer"
+    DATADEV_REVIEWER = "code reviewer"
+    DATADEV_TESTER = "software test engineer"
 
 
 class ModelType(Enum):
@@ -82,6 +87,24 @@ class PhaseType(Enum):
     ART_ELEMENT_INTEGRATION = "art element integration"
     CREATING_ENVIRONMENT_DOCUMENT = "environment document"
     CREATING_USER_MANUAL = "user manual"
+    
+    # Data Analytics specific phases
+    DOMAIN_UNDERSTANDING = "domain understanding"
+    DATA_UNDERSTANDING = "data understanding"
+    DATA_CLEANING = "data cleaning"
+    DATA_PIPELINE = "data pipeline"
+    EXPLORATORY_ANALYSIS = "exploratory analysis"
+    STATISTICAL_ANALYSIS = "statistical analysis"
+    FEATURE_ENGINEERING = "feature engineering"
+    MODEL_SELECTION = "model selection"
+    MODEL_TRAINING = "model training"
+    MODEL_VALIDATION = "model validation"
+    HYPERPARAMETER_TUNING = "hyperparameter tuning"
+    MODEL_INTERPRETABILITY = "model interpretability"
+    TEST_EXECUTION = "test execution"
+    ERROR_ANALYSIS = "error analysis"
+    CORRECTION_IMPLEMENTATION = "correction implementation"
+    REPORTING = "reporting"
 
 
 __all__ = ["TaskType", "RoleType", "ModelType", "PhaseType"]
