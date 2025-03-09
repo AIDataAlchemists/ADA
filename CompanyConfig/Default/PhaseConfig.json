@@ -1,0 +1,204 @@
+{
+  "DomainUnderstanding": {
+    "assistant_role_name": "Data Scientist",
+    "user_role_name": "Chief Product Officer",
+    "phase_prompt": [
+      "Before diving into the data, let's establish the business context for this analysis.",
+      "What industry is this data from? What are the key business questions?",
+      "Let's discuss domain-specific factors that might influence our analysis approach.",
+      "Identify key performance indicators and success metrics relevant to this domain.",
+      "Document any domain-specific constraints or requirements we should be aware of."
+    ]
+  },
+  "DataUnderstanding": {
+    "assistant_role_name": "Data Scientist",
+    "user_role_name": "Chief Product Officer",
+    "phase_prompt": [
+      "We have the following data sources: {data_sources}.",
+      "As the {assistant_role}, work with me to understand the data structure, variables, and potential analysis directions.",
+      "We need to identify key metrics and business questions that can be answered with this data.",
+      "Let's discuss and decide on the main analysis goals."
+    ]
+  },
+  "DataCleaning": {
+    "assistant_role_name": "Data Analyst",
+    "user_role_name": "Chief Technology Officer",
+    "phase_prompt": [
+      "Based on our analysis goals, we need to clean and preprocess the data.",
+      "Identify missing values, outliers, and inconsistencies in the dataset.",
+      "Check for potential data leakage issues.",
+      "Decide on appropriate cleaning strategies and data transformations.",
+      "Document all cleaning steps and rationale."
+    ]
+  },
+  "DataPipeline": {
+    "assistant_role_name": "Data Engineer",
+    "user_role_name": "Chief Technology Officer",
+    "phase_prompt": [
+      "Let's design an efficient data processing pipeline for this analysis.",
+      "Consider how data will flow from raw inputs to analysis-ready datasets.",
+      "Address any data integration challenges between different sources.",
+      "Ensure the pipeline is reproducible and maintainable.",
+      "Document the pipeline structure and key transformation steps."
+    ]
+  },
+  "ExploratoryAnalysis": {
+    "assistant_role_name": "Data Scientist",
+    "user_role_name": "Chief Product Officer",
+    "phase_prompt": [
+      "With the cleaned data, perform initial exploratory data analysis.",
+      "Generate summary statistics and visualizations to understand data distributions.",
+      "Identify patterns, correlations, and potential insights.",
+      "Check for data imbalance issues.",
+      "Document all findings and recommendations for further analysis."
+    ]
+  },
+  "StatisticalAnalysis": {
+    "assistant_role_name": "Statistician",
+    "user_role_name": "Data Scientist",
+    "phase_prompt": [
+      "Conduct rigorous statistical analysis on the prepared data.",
+      "Formulate and test relevant hypotheses based on business questions.",
+      "Apply appropriate statistical tests and models.",
+      "Assess statistical significance and effect sizes.",
+      "Quantify uncertainty in results and document statistical limitations."
+    ]
+  },
+  "FeatureEngineering": {
+    "assistant_role_name": "ML Engineer",
+    "user_role_name": "Chief Technology Officer",
+    "phase_prompt": [
+      "Based on the exploratory analysis, identify relevant features for modeling.",
+      "Create new features through transformations or combinations of existing variables.",
+      "Select the most predictive features using appropriate techniques.",
+      "Document all feature engineering decisions and their rationale.",
+      "Ensure features don't introduce data leakage."
+    ]
+  },
+  "ModelSelection": {
+    "assistant_role_name": "ML Engineer",
+    "user_role_name": "Chief Technology Officer",
+    "phase_prompt": [
+      "Considering the analysis goals and data characteristics, identify potential models to evaluate.",
+      "Discuss the pros and cons of each model type for this specific problem.",
+      "Select 2-3 models to proceed with for initial training and evaluation.",
+      "Consider models that are appropriate for our data size and complexity."
+    ]
+  },
+  "ModelTraining": {
+    "assistant_role_name": "ML Engineer",
+    "user_role_name": "Chief Technology Officer",
+    "phase_prompt": [
+      "Train the selected models using the prepared dataset.",
+      "Implement appropriate cross-validation and hyperparameter tuning.",
+      "Document training procedures, parameters, and initial performance metrics.",
+      "Be cautious of overfitting and underfitting during training."
+    ]
+  },
+  "ModelValidation": {
+    "assistant_role_name": "Data Scientist",
+    "user_role_name": "Chief Product Officer",
+    "phase_prompt": [
+      "Evaluate the trained models using validation datasets.",
+      "Compare performance metrics and identify strengths/weaknesses of each model.",
+      "Check for signs of overfitting and underfitting.",
+      "Document validation results and recommendations."
+    ]
+  },
+  "HyperparameterTuning": {
+    "assistant_role_name": "ML Engineer",
+    "user_role_name": "Chief Technology Officer",
+    "phase_prompt": [
+      "Based on the validation results, perform hyperparameter tuning on the selected model.",
+      "Use techniques like grid search or random search to find optimal parameters.",
+      "Document the tuning process and the impact on model performance.",
+      "Ensure the tuning process doesn't lead to overfitting."
+    ]
+  },
+  "ModelInterpretability": {
+    "assistant_role_name": "Model Interpreter",
+    "user_role_name": "Chief Product Officer",
+    "phase_prompt": [
+      "For the final selected model, provide clear interpretations of how it works.",
+      "Analyze feature importance and their impact on predictions.",
+      "Create visualizations that explain model behavior to stakeholders.",
+      "Identify potential biases or limitations in the model's decision-making.",
+      "Translate technical aspects into business-relevant insights."
+    ]
+  },
+  "CodeReview": {
+    "assistant_role_name": "Code Reviewer",
+    "user_role_name": "Chief Technology Officer",
+    "phase_prompt": [
+      "Review the generated Python code for the data analysis project.",
+      "Check for syntax errors, logical inconsistencies, missing imports, and code quality issues.",
+      "Verify that data preprocessing steps prevent data leakage.",
+      "Ensure proper handling of class imbalance.",
+      "Check for proper train/test split implementation.",
+      "Verify appropriate use of cross-validation.",
+      "Ensure model evaluation metrics are appropriate for the problem.",
+      "Provide detailed feedback on areas needing improvement.",
+      "Suggest corrections where necessary."
+    ]
+  },
+  "TestExecution": {
+    "assistant_role_name": "Software Test Engineer",
+    "user_role_name": "Chief Product Officer",
+    "phase_prompt": [
+      "Execute the Python code for the data analysis project.",
+      "Run unit tests and integration tests.",
+      "Identify any runtime errors or exceptions.",
+      "Specifically check for ML-specific issues:",
+      "- Data leakage between training and testing sets",
+      "- Class imbalance effects on model performance",
+      "- Stability of model across different data subsets",
+      "- Consistency of feature importance across runs",
+      "- Appropriate handling of categorical variables",
+      "- Proper normalization/scaling of features",
+      "Document test results and error messages.",
+      "Verify that the model performs well on separate test sets."
+    ]
+  },
+  "ErrorSummary": {
+    "assistant_role_name": "Software Test Engineer",
+    "user_role_name": "Chief Product Officer",
+    "phase_prompt": [
+      "Analyze the test results and error messages from the previous phase.",
+      "Summarize the types of errors encountered, including:",
+      "- Code implementation errors",
+      "- Data processing issues",
+      "- Model training problems",
+      "- Statistical validity concerns",
+      "- Performance evaluation issues",
+      "- Model stability problems",
+      "Identify patterns in the errors.",
+      "Create a prioritized list of issues to address.",
+      "Document potential causes of model performance issues."
+    ]
+  },
+  "CorrectionImplementation": {
+    "assistant_role_name": "ML Engineer",
+    "user_role_name": "Chief Technology Officer",
+    "phase_prompt": [
+      "Based on the error summary from the previous phase, implement corrections to the code.",
+      "Address syntax errors, logical issues, and other identified problems.",
+      "Fix any identified ML-specific issues such as data leakage or improper validation.",
+      "Re-run tests to verify corrections.",
+      "Document changes made and remaining issues.",
+      "Consider adjusting hyperparameters if model performance is suboptimal."
+    ]
+  },
+  "Reporting": {
+    "assistant_role_name": "Report Writer",
+    "user_role_name": "Chief Executive Officer",
+    "phase_prompt": [
+      "Compile all analysis results into a comprehensive report.",
+      "Include executive summary, methodology, key findings, and recommendations.",
+      "Generate appropriate visualizations to support findings.",
+      "Include model interpretation details that connect technical results to business implications.",
+      "Document any limitations of the analysis, including model performance issues.",
+      "Suggest next steps for further analysis or implementation.",
+      "Ensure the report is accessible to both technical and non-technical stakeholders."
+    ]
+  }
+}

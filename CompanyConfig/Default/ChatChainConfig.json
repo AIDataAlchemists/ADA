@@ -1,0 +1,158 @@
+{
+  "chain": [
+    {
+      "phase": "DomainUnderstanding",
+      "phaseType": "SimplePhase",
+      "max_turn_step": -1,
+      "need_reflect": "True"
+    },
+    {
+      "phase": "DataUnderstanding",
+      "phaseType": "SimplePhase",
+      "max_turn_step": -1,
+      "need_reflect": "True"
+    },
+    {
+      "phase": "DataPreparation",
+      "phaseType": "ComposedPhase",
+      "cycleNum": 2,
+      "Composition": [
+        {
+          "phase": "DataCleaning",
+          "phaseType": "SimplePhase",
+          "max_turn_step": -1,
+          "need_reflect": "True"
+        },
+        {
+          "phase": "DataPipeline",
+          "phaseType": "SimplePhase",
+          "max_turn_step": -1,
+          "need_reflect": "True"
+        }
+      ]
+    },
+    {
+      "phase": "Analysis",
+      "phaseType": "ComposedPhase",
+      "cycleNum": 1,
+      "Composition": [
+        {
+          "phase": "ExploratoryAnalysis",
+          "phaseType": "SimplePhase",
+          "max_turn_step": -1,
+          "need_reflect": "True"
+        },
+        {
+          "phase": "StatisticalAnalysis",
+          "phaseType": "SimplePhase",
+          "max_turn_step": -1,
+          "need_reflect": "True"
+        }
+      ]
+    },
+    {
+      "phase": "FeatureEngineering",
+      "phaseType": "SimplePhase",
+      "max_turn_step": -1,
+      "need_reflect": "True"
+    },
+    {
+      "phase": "ModelDevelopment",
+      "phaseType": "ComposedPhase",
+      "cycleNum": 2,
+      "Composition": [
+        {
+          "phase": "ModelSelection",
+          "phaseType": "SimplePhase",
+          "max_turn_step": 1,
+          "need_reflect": "False"
+        },
+        {
+          "phase": "ModelTraining",
+          "phaseType": "SimplePhase",
+          "max_turn_step": 1,
+          "need_reflect": "False"
+        },
+        {
+          "phase": "ModelValidation",
+          "phaseType": "SimplePhase",
+          "max_turn_step": 1,
+          "need_reflect": "False"
+        },
+        {
+          "phase": "HyperparameterTuning",
+          "phaseType": "SimplePhase",
+          "max_turn_step": 1,
+          "need_reflect": "False"
+        }
+      ]
+    },
+    {
+      "phase": "ModelInterpretability",
+      "phaseType": "SimplePhase",
+      "max_turn_step": -1,
+      "need_reflect": "True"
+    },
+    {
+      "phase": "CodeReview",
+      "phaseType": "SimplePhase",
+      "max_turn_step": -1,
+      "need_reflect": "True"
+    },
+    {
+      "phase": "Testing",
+      "phaseType": "ComposedPhase",
+      "cycleNum": 2,
+      "Composition": [
+        {
+          "phase": "TestExecution",
+          "phaseType": "SimplePhase",
+          "max_turn_step": 1,
+          "need_reflect": "False"
+        },
+        {
+          "phase": "ErrorSummary",
+          "phaseType": "SimplePhase",
+          "max_turn_step": 1,
+          "need_reflect": "False"
+        },
+        {
+          "phase": "CorrectionImplementation",
+          "phaseType": "SimplePhase",
+          "max_turn_step": 1,
+          "need_reflect": "False"
+        }
+      ]
+    },
+    {
+      "phase": "Reporting",
+      "phaseType": "SimplePhase",
+      "max_turn_step": -1,
+      "need_reflect": "True"
+    }
+  ],
+  "recruitments": [
+    "Chief Executive Officer",
+    "Counselor",
+    "Chief Human Resource Officer",
+    "Chief Product Officer",
+    "Chief Technology Officer",
+    "Data Analyst",
+    "Data Engineer",
+    "ML Engineer",
+    "Data Scientist",
+    "Statistician",
+    "Model Interpreter",
+    "Report Writer",
+    "Code Reviewer",
+    "Software Test Engineer"
+  ],
+  "clear_structure": "True",
+  "gui_design": "False",
+  "git_management": "False",
+  "self_improve": "False",
+  "web_spider": "False",
+  "incremental_develop": "False",
+  "with_memory": "False",
+  "background_prompt": "DataDev is a data analysis company powered by multiple intelligent agents, with a multi-agent organizational structure and the mission of 'delivering actionable insights through data'."
+}
