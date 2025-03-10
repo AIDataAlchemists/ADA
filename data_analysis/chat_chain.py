@@ -9,10 +9,10 @@ from datetime import datetime
 from camel.agents import RolePlaying
 from camel.configs import ChatGPTConfig
 from camel.typing import TaskType, ModelType
-from chatdev.chat_env import ChatEnv, ChatEnvConfig
-from chatdev.statistics import get_info
+from data_analysis.chat_env import ChatEnv, ChatEnvConfig
+from data_analysis.statistics import get_info
 from camel.web_spider import modal_trans
-from chatdev.utils import log_visualize, now
+from data_analysis.utils import log_visualize, now
 
 
 def check_bool(s):
@@ -29,16 +29,18 @@ class ChatChain:
                  project_name: str = None,
                  org_name: str = None,
                  model_type: ModelType = ModelType.GPT_3_5_TURBO,
-                 code_path: str = None) -> None:
+                 code_path: str = None,
+                 database: str = None) -> None:
         """
 
         Args:
             config_path: path to the ChatChainConfig.json
             config_phase_path: path to the PhaseConfig.json
             config_role_path: path to the RoleConfig.json
-            task_prompt: the user input prompt for software
-            project_name: the user input name for software
+            task_prompt: the user input prompt for analysis
+            project_name: the user input name for analysis project
             org_name: the organization name of the human user
+            database: the database or dataset selection
         """
 
         # load config file
@@ -49,6 +51,7 @@ class ChatChain:
         self.org_name = org_name
         self.model_type = model_type
         self.code_path = code_path
+        self.database = database
 
         with open(self.config_path, 'r', encoding="utf8") as file:
             self.config = json.load(file)
@@ -89,11 +92,11 @@ class ChatChain:
         self.start_time, self.log_filepath = self.get_logfilepath()
 
         # init SimplePhase instances
-        # import all used phases in PhaseConfig.json from chatdev.phase
+        # import all used phases in PhaseConfig.json from data_analysis.phase
         # note that in PhaseConfig.json there only exist SimplePhases
         # ComposedPhases are defined in ChatChainConfig.json and will be imported in self.execute_step
-        self.compose_phase_module = importlib.import_module("chatdev.composed_phase")
-        self.phase_module = importlib.import_module("chatdev.phase")
+        self.compose_phase_module = importlib.import_module("data_analysis.composed_phase")
+        self.phase_module = importlib.import_module("data_analysis.phase")
         self.phases = dict()
         for phase in self.config_phase:
             assistant_role_name = self.config_phase[phase]['assistant_role_name']
@@ -139,14 +142,14 @@ class ChatChain:
                                                            self.chat_turn_limit_default if max_turn_step <= 0 else max_turn_step,
                                                            need_reflect)
             else:
-                raise RuntimeError(f"Phase '{phase}' is not yet implemented in chatdev.phase")
+                raise RuntimeError(f"Phase '{phase}' is not yet implemented in data_analysis.phase")
         # For ComposedPhase, we create instance here then conduct the "ComposedPhase.execute" method
         elif phase_type == "ComposedPhase":
             cycle_num = phase_item['cycleNum']
             composition = phase_item['Composition']
             compose_phase_class = getattr(self.compose_phase_module, phase)
             if not compose_phase_class:
-                raise RuntimeError(f"Phase '{phase}' is not yet implemented in chatdev.compose_phase")
+                raise RuntimeError(f"Phase '{phase}' is not yet implemented in data_analysis.compose_phase")
             compose_phase_instance = compose_phase_class(phase_name=phase,
                                                          cycle_num=cycle_num,
                                                          composition=composition,
@@ -298,7 +301,7 @@ class ChatChain:
         datetime2 = datetime.strptime(now_time, time_format)
         duration = (datetime2 - datetime1).total_seconds()
 
-        post_info += "Software Info: {}".format(
+        post_info += "Analysis Info: {}".format(
             get_info(self.chat_env.env_dict['directory'], self.log_filepath) + "\n\n🕑**duration**={:.2f}s\n\n".format(
                 duration))
 
@@ -333,9 +336,9 @@ class ChatChain:
             revised_task_prompt: revised prompt from the prompt engineer agent
 
         """
-        self_task_improve_prompt = """I will give you a short description of a software design requirement, 
-please rewrite it into a detailed prompt that can make large language model know how to make this software better based this prompt,
-the prompt should ensure LLMs build a software that can be run correctly, which is the most import part you need to consider.
+        self_task_improve_prompt = """I will give you a short description of a data analysis requirement, 
+please rewrite it into a detailed prompt that can make large language model know how to make this analysis better based this prompt,
+the prompt should ensure LLMs build an analysis that can be run correctly, which is the most import part you need to consider.
 remember that the revised prompt should not contain more than 200 words, 
 here is the short description:\"{}\". 
 If the revised prompt is revised_version_of_the_description, 

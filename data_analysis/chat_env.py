@@ -9,10 +9,10 @@ from typing import Dict
 import openai
 import requests
 
-from chatdev.codes import Codes
-from chatdev.documents import Documents
-from chatdev.roster import Roster
-from chatdev.utils import log_visualize
+from data_analysis.codes import Codes
+from data_analysis.documents import Documents
+from data_analysis.roster import Roster
+from data_analysis.utils import log_visualize
 from ecl.memory import Memory
 
 try:
@@ -107,7 +107,7 @@ class ChatEnv:
     def exist_bugs(self) -> tuple[bool, str]:
         directory = self.env_dict['directory']
 
-        success_info = "The software run successfully without errors."
+        success_info = "The analysis completed successfully without errors."
         try:
 
             # check if we are on windows or linux
@@ -187,7 +187,7 @@ class ChatEnv:
         return self.requirements._get_docs()
 
     def _update_manuals(self, generated_content):
-        self.manuals._update_docs(generated_content, parse=False, predifined_filename="manual.md")
+        self.manuals._update_docs(generated_content, parse=False, predifined_filename="report.md")
 
     def rewrite_manuals(self):
         self.manuals._rewrite_docs()
@@ -239,6 +239,7 @@ class ChatEnv:
                 if desc.endswith(".png"):
                     desc = desc.replace(".png", "")
                 print("{}: {}".format(filename, desc))
+
                 if openai_new_api:
                     response = openai.images.generate(
                         prompt=desc,
@@ -289,7 +290,6 @@ class ChatEnv:
                 if desc.endswith(".png"):
                     desc = desc.replace(".png", "")
                 print("{}: {}".format(filename, desc))
-
                 if openai_new_api:
                     response = openai.images.generate(
                         prompt=desc,
